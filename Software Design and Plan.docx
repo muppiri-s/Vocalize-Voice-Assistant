@@ -1,0 +1,53 @@
+Explanation of Software Architecture Diagram:
+
+Figure 1 represents the Software architecture diagram of Vocalize. All components within the blue rectangle constitute the front end, while those within the red rectangle make up the backend. The ovals denote the programming languages/technologies used in each white rectangle, which in turn represent one or more files created using the listed programming languages/technologies.
+
+Figure 1: The software architecture diagram of Vocalize.
+
+Explanation of Software Architecture:
+
+GUI (Graphical User Interface):
+The GUI is the user-facing section of Vocalize. User interactions with the GUI trigger actions managed by the Controller.
+
+index.html: This file comprises the main body of Vocalize.
+settings.html: This file is responsible for managing Vocalize's settings.
+help.html: This file provides the help interface for Vocalize.
+settingsHelp.html: It offers assistance for configuring settings.
+usageHelp.html: This file provides guidance on using Vocalize.
+email.html: This file handles the email-related interface.
+reminder.html: This file is responsible for the reminder interface.
+list.html: This file manages the list-related interface.
+Controller:
+The Controller directs and manages interactions with the GUI. It is implemented in JavaScript and includes functions that update settings and manipulate elements on the user interface.
+
+script.js: This script controls index.html, initializes the application, and makes initial calls to the backend. Notably, it includes a function called mute() that updates a JSON file to indicate when certain functions should not execute.
+settings.js: This script manages settings.html, initializing and updating the settings interface by calling editSettings.py when the "Save Changes" button is pressed.
+email.js: This script handles email.html, calling send_email.py to send emails and managing user inputs and interface states.
+reminder.js: This script controls reminder.html, calling setReminder.py to create reminders on Google Calendar, and managing user inputs and interface states.
+list.js: This script manages list.html, calling create_list.py to create Google Docs lists, and handling user inputs and interface states.
+Middle Tier (Express Server):
+The middle tier of the architecture employs an Express server to facilitate communication between the Engine and the Controller. This server listens on a predefined port (3030) on the localhost interface, segregating functions based on the server's routes. Express handles incoming requests from the Engine via POST requests, enabling efficient data exchange between the Engine and Controller.
+
+Engine:
+The Engine is responsible for speech recognition and processing. It incorporates Wav2Vec2 for improved speech recognition accuracy. Speech is processed using fuzzy matching and then triggers specific functions.
+
+SR.py: Controls Wav2Vec2 for speech recognition. Detected speech invokes functions from process_speech.py. The application's mute status determines whether a function executes.
+process_speech.py: Contains functions for fuzzy matching and function execution based on recognized speech.
+editSettings.py: Used to update settings stored in settings.json, as JavaScript cannot write directly to files.
+Functions:
+Functions are files that execute user-selected actions. They handle various tasks, such as web searches, weather information retrieval, file management, media control, speech emulation, and more.
+
+search.py: Decides whether to search YouTube or Google, launches the selected option in a browser, and calls emulateSpeech.py to speak the results.
+weather.py: Searches for weather information and eventually displays it to the user. It also calls emulateSpeech.py to speak the weather information.
+openApplication.py: Searches for and opens user-specified files or applications and communicates with the user via emulateSpeech.py.
+createFile.py: Attempts to create files at user-specified paths and informs the user using emulateSpeech.py.
+createFolder.py: Tries to create folders at user-specified destinations and communicates results to the user via emulateSpeech.py.
+media.py: Provides control over system functions like taking screenshots, muting volume, playback, and volume control. It offers immediate feedback without speech emulation.
+emulateSpeech.py: Utilizes pyttsx3 to emulate speech using user-defined settings. It takes a string input and speaks it.
+joke.py: Shares random jokes with the user for entertainment.
+obtain_token.py: Initiates OAuth 2.0 authorization and obtains access tokens for various Google-related functions (e.g., sending emails, setting reminders, creating lists).
+email_access.py, reminder_access.py, list_access.py: These files use obtain_token.py with different arguments to acquire access tokens for specific functions (Emails, Reminders, Lists).
+send_email.py: Sends emails through the user's Gmail account, authorized via OAuth 2.0, providing clear completion feedback.
+setReminder.py: Creates reminders on the user's Google Calendar and sends email notifications at specified times.
+create_list.py: Generates Google Docs lists, with the resulting document accessible to the user.
+This comprehensive architecture and associated functions collectively enable Vocalize to offer a range of user interactions and tasks through speech recognition and a user-friendly interface.
