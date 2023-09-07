@@ -1,21 +1,42 @@
 # Vocalize Voice Assistant
 
-## Table of Contents
-1. Objectives
-2. Implementation
+## Overview
+
+**Vocalize Voice Assistant** is a feature-rich virtual assistant designed to enhance daily productivity for Windows users. Leveraging a powerful combination of programming languages and technologies, Vocalize offers a seamless and efficient way to complete various tasks using voice commands. By incorporating both frontend and backend technologies, the aim is to provide users with a versatile and user-friendly virtual assistant experience.
+
+## Technologies Used
+
+### Frontend
+- JavaScript
+- HTML
+- CSS
+- Electron
+- Node.js
+- Bootstrap
+
+### Middle Tier
+- Node.js Express Server
+
+### Backend
+- Python
+- Wav2Vec2
+- OAuth 2.0
+- FuzzyWuzzy
 
 ## Objectives
 
-**Vocalize Voice Assistant** utilizes the Electron framework as a critical asset of the entire application, providing a simple way to package our product in the Electron Package Manager. However, before deployment can commence, several challenges must be addressed:
+Voice-based virtual assistants on Windows often have limitations in completing daily tasks. **Vocalize Voice Assistant** was created with the intention of addressing these limitations and providing a highly useful and efficient personal virtual assistant. The key objectives include:
 
-1. **Executable Conversion:** Vocalize Voice Assistant employs various programming languages, primarily Python. To ensure compatibility with any Windows device, every Python script needs to be converted into an executable file.
+- **Ease of Use**: Vocalize aims to make daily tasks effortless by enabling users to interact with their computers through voice commands.
 
-2. **Development vs. Production Mode:** The system must determine whether it is in development or production mode. In production mode, executable functions will be run instead of .py files to protect proprietary source code.
-
-3. **Target Audience Identification:** Before deployment, the team needs to understand the target audience of the application. OAuth 2.0, which allows various functionalities like reminders, lists, and email, also provides a way to uniquely identify users. This information will be used to customize the application for a broader audience.
-
-The end goal is to provide a voice-based virtual assistant to assist users with their daily computer tasks.
+- **Versatile Functionality**: Vocalize offers a wide range of functions, including Google and YouTube searches, folder and file creation, opening applications, sending emails, setting reminders on Google Calendar, creating lists on Google Docs, media control (play/pause, volume adjustments), and taking screenshots.
 
 ## Implementation
 
-The implementation of Vocalize Voice Assistant is well underway, with most requirements already integrated into the application. An older version of Vocalize has been compiled and packaged as a test run, and OAuth 2.0 has been fully implemented. However, further testing and implementation of functions that require OAuth 2.0 will be necessary to ensure a seamless user experience.
+Vocalize Voice Assistant combines a robust frontend built with JavaScript, HTML, CSS, Electron, Node.js, and Bootstrap, ensuring a user-friendly interface. The middle tier utilizes Node.js and Express Server to handle requests and communication between the front end and backend.
+
+In the backend, Python serves as the core language, with Wav2Vec2 for speech recognition, OAuth 2.0 for authentication, and FuzzyWuzzy for text matching. These technologies work in harmony to provide a seamless voice-based virtual assistant experience.
+
+## Conclusion
+
+Vocalize Voice Assistant strives to bridge the gap between users and efficient computer-based task completion. By incorporating cutting-edge technologies and a user-friendly interface, Vocalize aims to become an indispensable tool for enhancing daily productivity on Windows devices.
